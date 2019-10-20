@@ -1,0 +1,47 @@
+body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Title (header) */
+  .header{    
+    background:#be0c0c;
+    height: 140px;
+  }
+h1{
+    color: white;
+    text-align: center;
+    font-family: Mukta Vaani;
+    padding: 1.75vw;
+    font-size: 6.75vw;
+}
+
+h3{
+    color: black;
+    background: #ffc300;
+    font-size: 24px;
+    text-align: center;
+    font-family: Mukta Vaani;
+
+}
+p.item_word{
+    color: black;
+    font-size: 16px;
+    text-align:left;
+    font-family: 'Times New Roman';
+    padding: 10px;
+}
+span{
+  font-size: 16px;
+  color: #DD1021;
+}
+p.conclusion{
+  padding: 10px;
+  text-align: left;
+  border-top: 1px solid black;
+}
+p.contact{
+  font-size: 12px;
+  text-align:left;
+  padding: 10px;
+}
