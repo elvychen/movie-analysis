@@ -11,7 +11,7 @@ mouse/touch event handler to bind the charts together.
  * built-in events with handlers defined on the parent element.
  */
 ['mousemove', 'touchmove', 'touchstart'].forEach(function (eventType) {
-    document.getElementById('container').addEventListener(
+    document.getElementById('timeline').addEventListener(
         eventType,
         function (e) {
             var chart,
@@ -21,14 +21,28 @@ mouse/touch event handler to bind the charts together.
 
             for (i = 0; i < Highcharts.charts.length; i = i + 1) {
                 chart = Highcharts.charts[i];
+                if (chart==null || chart.renderTo==null){
+                    continue;
+                }
                 // Find coordinates within the chart
                 event = chart.pointer.normalize(e);
                 // Get the hovered point
                 point = chart.series[0].searchPoint(event, true);
 
                 if (point) {
+                   
+                    var data = missionImpossible[point.id];
+                    if (data == null){
+                        geomap.series[0].update({'data':[]});
+                    }
+                    else{
+                        geomap.series[0].update({'data':data});
+
+                    }
                     point.highlight(e);
                 }
+                console.log(geomap);
+
             }
         }
     );
@@ -139,14 +153,17 @@ var timeline = {
       data: [],
     }]
   }
+
 var dataset = {};
 var timeline_dict = {};
+var missionImpossible = {};
+
 Highcharts.ajax({
-    url:'./data/timelinedata.json',
+    url:'./data/data.json',
     dataType:'text',
-    success: function(activity){   
+    success: function(activity){
         activity = JSON.parse(activity);
-        dataset = activity;
+        dataset = activity[0];
         timeline_data = [];
         movie_ids = Object.keys(dataset);
         for (i =0;i<movie_ids.length;i++){
@@ -160,16 +177,63 @@ Highcharts.ajax({
             }
             movie_dict = {};
             title = current_movie['title'];
-            timeline_dict[Date.parse(year)].push(title)
+            if (timeline_dict[Date.parse(year)].includes(title)==false){
+                timeline_dict[Date.parse(year)].push(title);
+            }
             movie_dict['x'] = Date.parse(year);
             movie_dict['name'] = title;
             movie_dict['label'] = title;
+            movie_dict['id'] = movie_ids[i];
             timeline_data.unshift(movie_dict);
         }
-        console.log(timeline_data);
         timeline.series[0].data = timeline_data;
-        Highcharts.chart('container',timeline);
-
+        Highcharts.chart('timeline',timeline);
+        MI_orig = activity[1];
+        MI_movie_id = Object.keys(MI_orig);
+        for (i = 0;i<MI_movie_id.length;i++){
+            box_office = MI_orig[MI_movie_id[i]];
+            movie_countries = Object.keys(box_office);
+            countries = [];
+            for (j = 0;j<movie_countries.length;j++){
+                movie = {};
+                movie['name'] = movie_countries[j];
+                movie['value'] = parseInt(box_office[movie_countries[j]]);
+                countries.push(movie);
+            }
+            missionImpossible[MI_movie_id[i]] = countries;
+        }
     }
+    
 });
-
+geomap = new Highcharts.mapChart('geomap', {
+    chart: {
+      map: 'custom/world',
+    },
+    title: {
+        text: 'Mission Impossible Box Office Across the World'
+      },
+    mapNavigation: {
+      enabled: true,
+      buttonOptions: {
+        verticalAlign: 'bottom'
+      }
+    },
+    credits:{
+        enabled: false,
+    },
+    colorAxis:{
+        endOnTick: true,
+        minColor: '#33ECFF',
+        maxColor: '#4C33FF',
+    },
+    series: [{
+      data: [],
+      joinBy: ['name', 'name'],
+      name: 'Mission Impossible Box Office',
+      states: {
+        hover: {
+          color: '#a4edba'
+        }
+      }
+    }]
+});
