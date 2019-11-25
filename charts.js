@@ -223,8 +223,8 @@ geomap = new Highcharts.mapChart('geomap', {
     },
     colorAxis:{
         endOnTick: true,
-        minColor: '#33ECFF',
-        maxColor: '#4C33FF',
+        minColor: '#A3FAF2',
+        maxColor: '#3C33FF',
     },
     series: [{
       data: [],
