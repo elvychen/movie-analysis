@@ -166,6 +166,7 @@ Highcharts.ajax({
             movie_dict['label'] = title;
             timeline_data.unshift(movie_dict);
         }
+        console.log(timeline_data);
         timeline.series[0].data = timeline_data;
         Highcharts.chart('container',timeline);
 
