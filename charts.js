@@ -30,18 +30,23 @@ mouse/touch event handler to bind the charts together.
                 point = chart.series[0].searchPoint(event, true);
 
                 if (point) {
-                   
                     var data = missionImpossible[point.id];
                     if (data == null){
+                        geomap.setTitle({'text':'Not Mission Impossible Series !!!!!!!!!'})
                         geomap.series[0].update({'data':[]});
+                    }
+                    else if (data.length==0){
+                        geomap.setTitle({'text':'NOT RELEASED!!!!!!!!!'})
+                        geomap.series[0].update({'data':[]});
+
                     }
                     else{
                         geomap.series[0].update({'data':data});
+                        geomap.setTitle({'text':'Mission Impossible Box Office Across the World'});
 
                     }
                     point.highlight(e);
                 }
-                console.log(geomap);
 
             }
         }
@@ -115,10 +120,10 @@ var timeline = {
         enabled: false,
     },
     title: {
-      text: 'Timeline of Space Exploration'
+      text: 'Movies that Tom Cruise Acted In'
     },
     subtitle: {
-        text: 'hello'
+        text: "Timeline of Tom Cruise's movies"
     },
     tooltip: {
       style: {
@@ -208,6 +213,8 @@ Highcharts.ajax({
 geomap = new Highcharts.mapChart('geomap', {
     chart: {
       map: 'custom/world',
+      height:600,
+      align: "center",
     },
     title: {
         text: 'Mission Impossible Box Office Across the World'
@@ -223,7 +230,7 @@ geomap = new Highcharts.mapChart('geomap', {
     },
     colorAxis:{
         endOnTick: true,
-        minColor: '#A3FAF2',
+        minColor: '#ABFE82',
         maxColor: '#3C33FF',
     },
     series: [{

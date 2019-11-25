@@ -1,6 +1,6 @@
 #geomap {
-    height: 500px; 
-    min-width: 310px; 
-    max-width: 800px; 
+    height: 600px; 
+    width:900px;
     margin: 0 auto; 
+    text-align:center;
 }
