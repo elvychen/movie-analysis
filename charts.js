@@ -28,9 +28,9 @@ mouse/touch event handler to bind the charts together.
                 event = chart.pointer.normalize(e);
                 // Get the hovered point
                 point = chart.series[0].searchPoint(event, true);
-
                 if (point) {
                     var data = missionImpossible[point.id];
+                    geomap.setSubtitle({'text':"Movie: "+timeline_dict[point.x][timeline_dict[point.x].length-1]});
                     if (data == null){
                         geomap.setTitle({'text':'Not Mission Impossible Series !!!!!!!!!'})
                         geomap.series[0].update({'data':[]});
@@ -41,7 +41,9 @@ mouse/touch event handler to bind the charts together.
 
                     }
                     else{
+                        price = getTotalBoxOffice(data);
                         geomap.series[0].update({'data':data});
+                        geomap.setSubtitle({'text':"Movie: "+timeline_dict[point.x][timeline_dict[point.x].length-1]+"</br>Total Box Office: $"+price});
                         geomap.setTitle({'text':'Mission Impossible Box Office Across the World'});
 
                     }
@@ -52,6 +54,7 @@ mouse/touch event handler to bind the charts together.
         }
     );
 });
+
 
 /**
  * Override the reset function, we don't need to hide the tooltips and
@@ -93,7 +96,14 @@ function syncExtremes(e) {
         });
     }
 }
-
+function getTotalBoxOffice(dataset){
+    totalvalue = 0;
+    for (i = 0;i<dataset.length;i++){
+        totalvalue+=dataset[i]['value'];
+    }
+    return totalvalue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    
+}
 var timeline = {
     chart: {
       zoomType: 'x',
@@ -214,7 +224,6 @@ geomap = new Highcharts.mapChart('geomap', {
     chart: {
       map: 'custom/world',
       height:600,
-      align: "center",
     },
     title: {
         text: 'Mission Impossible Box Office Across the World'
@@ -224,6 +233,10 @@ geomap = new Highcharts.mapChart('geomap', {
       buttonOptions: {
         verticalAlign: 'bottom'
       }
+    },
+    subtitle:{
+        text: "",
+        useHTML : true,
     },
     credits:{
         enabled: false,
