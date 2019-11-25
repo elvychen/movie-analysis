@@ -130,10 +130,10 @@ var timeline = {
         enabled: false,
     },
     title: {
-      text: 'Movies that Tom Cruise Acted In'
+      text: "Timeline of Tom Cruise's movies"
     },
     subtitle: {
-        text: "Timeline of Tom Cruise's movies"
+        text: 'Year of the Movies that Tom Cruise Acted In'
     },
     tooltip: {
       style: {
@@ -226,7 +226,8 @@ geomap = new Highcharts.mapChart('geomap', {
       height:600,
     },
     title: {
-        text: 'Mission Impossible Box Office Across the World'
+        text: 'Mission Impossible Box Office Across the World',
+        useHTML: true,
       },
     mapNavigation: {
       enabled: true,
