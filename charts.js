@@ -29,22 +29,25 @@ mouse/touch event handler to bind the charts together.
                 // Get the hovered point
                 point = chart.series[0].searchPoint(event, true);
                 if (point) {
-                    var data = missionImpossible[point.id];
-                    geomap.setTitle({'text':"Movie: "+timeline_dict[point.x][0]});
-                    if (data == null){
-                        geomap.setSubtitle({'text':"No Box Office Information"});
-                        geomap.series[0].update({'data':[]});
+                    if (chart.renderTo.id == "timeline"){
+                        var data = missionImpossible[point.id];
+                        geomap.setTitle({'text':"Movie: "+timeline_dict[point.x][0]});
+                        if (data == null){
+                            geomap.setSubtitle({'text':"No Box Office Information"});
+                            geomap.series[0].update({'data':[]});
+                        }
+                        else if (data.length==0){
+                            geomap.setSubtitle({'text':'The Movie Is Not Released'})
+                            geomap.series[0].update({'data':[]});
+    
+                        }
+                        else{
+                            price = getTotalBoxOffice(data);
+                            geomap.series[0].update({'data':data});
+                            geomap.setSubtitle({'text':"Total Box Office Across the World: $"+price});
+                        }
                     }
-                    else if (data.length==0){
-                        geomap.setSubtitle({'text':'The Movie Is Not Released'})
-                        geomap.series[0].update({'data':[]});
-
-                    }
-                    else{
-                        price = getTotalBoxOffice(data);
-                        geomap.series[0].update({'data':data});
-                        geomap.setSubtitle({'text':"Total Box Office Across the World: $"+price});
-                    }
+                    
                     point.highlight(e);
                 }
 
@@ -210,7 +213,85 @@ Highcharts.ajax({
             }
             missionImpossible[MI_movie_id[i]] = countries;
         }
-    }
+
+        radarData = activity[2];
+        Highcharts.chart('radar', {
+
+            chart: {
+              parallelCoordinates: true,
+              polar: true,
+              type:'line',
+            },
+          
+            xAxis: {
+              categories: ['rating', 'rating_count', 'num_movies', 'runtime', 'num_stars', 'box_office'],
+              tickmarkPlacement: 'on',
+              lineWidth: 0
+            },
+          
+            legend: {
+              enabled: true
+            },
+            tooltip: {
+                shared: true,
+            },
+            yAxis: [{
+              min: 0,
+              max: 10,
+              showLastLabel: true,         
+              lineWidth: 0,
+              gridLineInterpolation: 'polygon',
+            }, {
+              min: 0,
+              max: 350000,
+              showLastLabel: true,         
+              lineWidth: 0,              
+              gridLineInterpolation: 'polygon',
+
+            }, {
+              min: 0,
+              max: 45,
+              showLastLabel: true,          
+              lineWidth: 0,             
+              gridLineInterpolation: 'polygon',
+            }, {
+                min: 0,
+                max: 145,
+                showLastLabel: true,          
+                lineWidth: 0,             
+                gridLineInterpolation: 'polygon',
+              }, {
+                min: 0,
+                max: 10,
+                showLastLabel: true,            
+                lineWidth: 0,           
+                gridLineInterpolation: 'polygon',
+              }, {
+                min: 0,
+                max: 600000000,
+                showLastLabel: true,           
+                lineWidth: 0,            
+                gridLineInterpolation: 'polygon',
+              }],
+            series: radarData,
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 500
+                    },
+                    chartOptions: {
+                        legend: {
+                            align: 'center',
+                            verticalAlign: 'bottom'
+                        },
+                        pane: {
+                            size: '70%'
+                        }
+                    }
+                }]
+            }
+          });}
+
     
 });
 geomap = new Highcharts.mapChart('geomap', {
@@ -252,3 +333,4 @@ geomap = new Highcharts.mapChart('geomap', {
       }
     }]
 });
+
