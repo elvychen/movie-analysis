@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>
-            McDonald's
+            Actor's report
         </title>
         <link rel="stylesheet" type="text/css" href="style.css">
         <link href="https://fonts.googleapis.com/css?family=Mukta Vaani" type="text/css" rel="stylesheet">
@@ -10,122 +10,26 @@
         <div class="container">
             <!-------------------------------Header------------------------>
             <div class="header">
-                <img src="http://logok.org/wp-content/uploads/2014/06/McDonalds-logo.png" alt="logo" width="150vw" height="150vw" align = left>
-                <img src="http://logok.org/wp-content/uploads/2014/06/McDonalds-logo.png" alt="logo" width="150vw" height="150vw" align = right>
+                
                 <h1>McDonald's Report</h1>
             </div>
             <!-- External Import begins-->
-            <script src="./highchart.js"></script>
+            <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+            <script src="https://code.highcharts.com/highcharts.js"></script>
+            <script src="https://code.highcharts.com/highcharts-more.js"></script>
+            <script src="https://code.highcharts.com/modules/exporting.js"></script>
+            <script src="https://code.highcharts.com/modules/export-data.js"></script>
+            <script src="https://code.highcharts.com/modules/accessibility.js"></script>
             <!-- External Import ends-->
 
 
             <!-- Monthly Sales of Total Item-->
             <div class="Monthly Sale Block">
-                <h3 class="subHeading">Distribution of Sales in the Regions</h3>
-                    <div id = 'RegionSales'>
-                        <!-- Internal Import begins-->
-                        <script src="./graphs/total_sales.js"></script>
-                        <!-- Internal Import ends -->
-                    </div>
-                    <p class="item_word">
-                        <br> From 2016 to September 2018, the sales of McDonald's increases throughout the time. However, there is a descreasing trend of the total
-                        sales of the three items across all five regions in <b> October 2018</b>. This can be linked to the impact of Burger King's Impossible Burger. 
-                    </p>
+                <div id = 'radar'>
+                <!-- Internal Import begins-->
+                <script src="./graphs/radar.js"></script>
+                <!-- Internal Import ends -->
             </div>
-
-            <!-- Monthly Sales of three items-->
-            <div class="Item Year Block">
-                <h3 class="subHeading">Total Sales of the Three Items</h3>
-                    <div id = 'ItemsSoldOvertime'>
-                        <!-- Internal Import begins-->
-                        <script src="./graphs/USD_item_year.js"></script>
-                        <!-- Internal Import ends -->
-                    </div>
-                    <p class="item_word">
-                        <br>From 2016 to September 2018, the sale of <b>hamburger</b> is in a increasing trend. However, in <b>October 2018</b>, 
-                        there is a steep descreasing slope. Besides hamburger, chicken fillet and fish fillet also increases throughout the years and 
-                        have a small descreasing trend in October 2018. However, the sale of chicken fillet does not varies that much comparing to the hamburger. 
-                        <br>
-                        <br>Besides it, as the graph shows, United States tend to have more sales on hamburger. Because it is similar to Impossible Burger, it is 
-                        affected by itthe most when it is released (October 2018).         
-                        <br> 
-                        <br><span>Suggestions: </span> The trends for chicken fillet and fish fillet do not increase throughout years. Therefore, I would suggest that 
-                        McDonald's to introduce new chicken fillet and fish fillet to gain more sales. Besides this, I would also recommend McDonald's to introduce new 
-                        burger that is similar to the Impossible Burger to bring back the consumers.  
-                    </p>
-            </div>
-
-            <!-- September to Novement hamburger comparison-->
-            <div class="Hamburger Month Comparison">
-                    <h3 class="subHeading">Trend of Hamburger's Sale</h3>
-                        <div id = 'HamburgerComparison'>
-                            <!-- Internal Import begins-->
-                            <script src="./graphs/hamburger_months.js"></script>
-                            <!-- Internal Import ends -->
-                        </div>
-                        <p class="item_word">
-                        <br> As the Impossible Burger released in October 2018, the sales of the hamburgers in McDonald's significantly <b>decreases</b> from September to
-                         October. Fortunately, in the next month, the sales of the hamburger brings a little bit back.
-                        <br> 
-                        <br> However, looking back to the first graph, the total sales still do not go back to the status of sales before September 2018. The sales of the 
-                        McDonald's are still affected by the Impossible Burger. 
-                        </p>
-                </div>
-
-                        
-            <!-- Sales in different location-->
-            <div class="Sales in Locations">
-                    <h3 class="subHeading">Sales in Different Locations</h3>
-                        <div id = 'SalesinLocations'>
-                            <!-- Internal Import begins-->
-                            <script src="./graphs/location_comparison.js"></script>
-                            <!-- Internal Import ends -->
-                        </div>
-                        <p class="item_word">
-                            <br> The distributions of the three products have the <b>similar</b> trends. From Janauray 2016 to September 2019, the hamburger is the most popular 
-                            item among chicken fillet and fish fillet in all five regions in the United States. 
-                        </p>
-                </div>
-            <!-- Average Sales in Pie-->
-            <div class="Region Week Block">
-                <h3 class="subHeading">Average Sales in the Day of the Week</h3>
-                <div id = 'region_pie'>
-                     <!-- Internal Import begins-->
-                    <script src="./graphs/average_sales_percentage.js"></script>
-                    <!-- Internal Import ends -->
-                </div>
-                <p class="item_word">
-                    <br>It presents that in Janauray 2016, the average sales across the U.S. in different
-                    day of a week do not varies a lot. It is almost evenly distributed. 
-                </p>
-            </div>
-            <!-- Average Sales in Different Day-->
-            <div class="Region Week Block">
-                <h3 class="subHeading">Average Sales in the Day of the Week in 5 Regions</h3>
-                    <div id = 'region_week'>
-                        <!-- Internal Import begins-->
-                        <script src="./graphs/average_day_sale.js"></script>
-                        <!-- Internal Import ends -->
-                    </div>
-                    <p class="item_word">
-                        The total average sale of the days in a week in all the regions do not vary a lot. Looking 
-                        at each region, the sales of the products across the days are about the same. 
-                    </p>  
-            </div>
-            <p class = "conclusion"> 
-                <br>
-                <span>Conclusion:</span> The Burger King's Impossible Burger still bring affects to the McDonald's in the 
-                long term. The total sales do not bring back to the point before October 2018 and stay in the lower sales. 
-                Therefore, I would suggest McDonald's should introduce a burger that is similar to the Impossible Burger 
-                to gain the consumer. Besides this, the chicken fillet and fish fillet do not gain sales over the years. 
-                So, McDonald should also introduce new versions of these two to gather more consumers. 
-            </p>
-            <a href="https://github.com/yuc399/yuc399.github.io/blob/master/CEO_pdf.pdf" class="image fit" >Download_PDF</a>
-            <p class="contact">
-                <img class="lovingIt" src="https://www.mcdonalds.com/content/dam/usa/nfl/assets/nav/arches-logo_108x108.jpg" width=30px>
-                Yu-Chieh Chen  &copy;              
-            </p>
-            
         </div>
 
 </html>
