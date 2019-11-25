@@ -73,7 +73,6 @@ Highcharts.Point.prototype.highlight = function (event) {
     event = this.series.chart.pointer.normalize(event);
     this.onMouseOver(); // Show the hover marker
     this.series.chart.tooltip.refresh(this); // Show the tooltip
-    this.series.chart.xAxis[0].drawCrosshair(event, this); // Show the crosshair
 };
 
 /**
@@ -181,18 +180,20 @@ Highcharts.ajax({
         for (i =0;i<movie_ids.length;i++){
             current_movie = dataset[movie_ids[i]];
             year = current_movie['year'];
+            var a = year.split(/[^0-9]/);
+            date = new Date (a[0],a[1]-1,a[2]);
             if (year==null){
                 continue;
             }
-            if (timeline_dict.hasOwnProperty(Date.parse(year))==false){
-                timeline_dict[Date.parse(year)] = [];
+            if (timeline_dict.hasOwnProperty(date)==false){
+                timeline_dict[date] = [];
             }
             movie_dict = {};
             title = current_movie['title'];
-            if (timeline_dict[Date.parse(year)].includes(title)==false){
-                timeline_dict[Date.parse(year)].push(title);
+            if (timeline_dict[date].includes(title)==false){
+                timeline_dict[date].push(title);
             }
-            movie_dict['x'] = Date.parse(year);
+            movie_dict['x'] = date;
             movie_dict['name'] = title;
             movie_dict['label'] = title;
             movie_dict['id'] = movie_ids[i];
@@ -234,7 +235,9 @@ Highcharts.ajax({
               tickmarkPlacement: 'on',
               lineWidth: 0
             },
-          
+            credits:{
+                enabled: false
+            },
             legend: {
               enabled: true
             },
@@ -303,7 +306,6 @@ Highcharts.ajax({
 geomap = new Highcharts.mapChart('geomap', {
     chart: {
       map: 'custom/world',
-      height:600,
     },
     title: {
         text: 'Box Office Across the World',
