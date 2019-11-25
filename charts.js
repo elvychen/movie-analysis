@@ -222,9 +222,14 @@ Highcharts.ajax({
               polar: true,
               type:'line',
             },
-          
+            title:{
+                text:"Comparison between Mission Impossible and Other Tom Cruise's Movies"
+            },
+            subtitle:{
+                text:"Difference Between Rating, Number of Ratings, Number of Movies, Movie Time, Number of Movie Stars, and Box Offices"
+            },
             xAxis: {
-              categories: ['rating', 'rating_count', 'num_movies', 'runtime', 'num_stars', 'box_office'],
+              categories: ['Avg. rating', 'Avg. rating_count', 'num_movies', 'Avg. runtime', 'Avg. num_stars', 'Avg. box_office'],
               tickmarkPlacement: 'on',
               lineWidth: 0
             },
