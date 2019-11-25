@@ -46,9 +46,10 @@ mouse/touch event handler to bind the charts together.
                             geomap.series[0].update({'data':data});
                             geomap.setSubtitle({'text':"Total Box Office Across the World: $"+price});
                         }
+                        point.highlight(e);
+
                     }
                     
-                    point.highlight(e);
                 }
 
             }
