@@ -30,22 +30,20 @@ mouse/touch event handler to bind the charts together.
                 point = chart.series[0].searchPoint(event, true);
                 if (point) {
                     var data = missionImpossible[point.id];
-                    geomap.setSubtitle({'text':"Movie: "+timeline_dict[point.x][timeline_dict[point.x].length-1]});
+                    geomap.setTitle({'text':"Movie: "+timeline_dict[point.x][0]});
                     if (data == null){
-                        geomap.setTitle({'text':'Not Mission Impossible Series !!!!!!!!!'})
+                        geomap.setSubtitle({'text':"No Box Office Information"});
                         geomap.series[0].update({'data':[]});
                     }
                     else if (data.length==0){
-                        geomap.setTitle({'text':'NOT RELEASED!!!!!!!!!'})
+                        geomap.setSubtitle({'text':'The Movie Is Not Released'})
                         geomap.series[0].update({'data':[]});
 
                     }
                     else{
                         price = getTotalBoxOffice(data);
                         geomap.series[0].update({'data':data});
-                        geomap.setSubtitle({'text':"Movie: "+timeline_dict[point.x][timeline_dict[point.x].length-1]+"</br>Total Box Office: $"+price});
-                        geomap.setTitle({'text':'Mission Impossible Box Office Across the World'});
-
+                        geomap.setSubtitle({'text':"Total Box Office Across the World: $"+price});
                     }
                     point.highlight(e);
                 }
@@ -112,9 +110,9 @@ var timeline = {
     xAxis: {
       type: 'datetime',
       visible: false,
-      dateTimeLabelFormats: {
-        year: '%Y'   
-     }
+      labels: {
+        format: '{value:%Y-%b-%e}'
+      },
     },
     yAxis: {
       gridLineWidth: 1,
@@ -142,13 +140,8 @@ var timeline = {
       formatter: function(){
             var movies = timeline_dict[this.x];
             var color = this.color;
-            var date = Highcharts.dateFormat('%Y',this.x);
-            var to_return = '<span style="color:'+color+'">'+date+'<br/>';
-            movies.forEach(function(i){
-                to_return += '<span style="color:'+color+'">● </span><span style="font-weight: bold;" ></span>'+i+'<br/>';
-                }
-            );
-            return to_return;
+            var date = Highcharts.dateFormat('%b %e, %Y',this.x);
+            return '<span style="color:'+color+'">'+date+'<br/><span style="color:'+color+'">● </span><span style="font-weight: bold;" ></span>'+movies[0]+'<br/>';
         },
     },
     series: [{
@@ -174,7 +167,7 @@ var timeline_dict = {};
 var missionImpossible = {};
 
 Highcharts.ajax({
-    url:'./data/data.json',
+    url:'./data/final_data.json',
     dataType:'text',
     success: function(activity){
         activity = JSON.parse(activity);
@@ -226,7 +219,7 @@ geomap = new Highcharts.mapChart('geomap', {
       height:600,
     },
     title: {
-        text: 'Mission Impossible Box Office Across the World',
+        text: 'Box Office Across the World',
         useHTML: true,
       },
     mapNavigation: {
@@ -250,7 +243,7 @@ geomap = new Highcharts.mapChart('geomap', {
     series: [{
       data: [],
       joinBy: ['name', 'name'],
-      name: 'Mission Impossible Box Office',
+      name: 'Box Office',
       states: {
         hover: {
           color: '#a4edba'
