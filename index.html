@@ -3,6 +3,7 @@
         <title>
             Actor's report
         </title>
+        <link rel="stylesheet" type="text/css" href="style.css">
     </head>   
     <body>
         <div class="container">
@@ -18,23 +19,59 @@
             <!-- External Import ends-->
 
 
-            <!-- Monthly Sales of Total Item-->
-            <div id = 'timeline'>
-                <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>                    
-                <script src="https://code.highcharts.com/maps/highmaps.js"></script>
-                <script src="https://code.highcharts.com/maps/modules/data.js"></script>
-                <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
-                <script src="https://code.highcharts.com/mapdata/custom/world.js"></script>
-                <script src="https://code.highcharts.com/highcharts.js"></script>
-                <script src="https://code.highcharts.com/modules/data.js"></script>
-                <script src="https://code.highcharts.com/modules/timeline.js"></script>
-                <script src="https://code.highcharts.com/highcharts-more.js"></script>
-                <script src="https://code.highcharts.com/modules/parallel-coordinates.js"></script>
+            <!-- Timeline-->
+            <div>
+                <div id = 'timeline'>
+                    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>                    
+                    <script src="https://code.highcharts.com/maps/highmaps.js"></script>
+                    <script src="https://code.highcharts.com/maps/modules/data.js"></script>
+                    <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
+                    <script src="https://code.highcharts.com/mapdata/custom/world.js"></script>
+                    <script src="https://code.highcharts.com/highcharts.js"></script>
+                    <script src="https://code.highcharts.com/modules/data.js"></script>
+                    <script src="https://code.highcharts.com/modules/timeline.js"></script>
+                    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+                    <script src="https://code.highcharts.com/modules/parallel-coordinates.js"></script>
 
-                
-                <!-- Internal Import begins-->
-                <script src="charts.js"></script>
-                <!-- Internal Import ends -->
+                    
+                    <!-- Internal Import begins-->
+                    <script src="charts.js"></script>
+                    
+                    <!-- Internal Import ends -->
+                </div>
+                <table style="width: 100%">
+                    <colgroup>
+                        <col span="1" style="width: 10%;">
+                        <col span="1" style="width: 15%;">
+                        <col span="1" style="width: 75%;">
+                        </colgroup>
+                    <tr>
+                        <td>
+                            <img src = "data/tom_cruise.jpg" style="display:block; width:100%; height:auto;" > 
+                        </td>
+                        <td>
+                            <h3 style="text-align: center;">
+                                Tom Cruise's Information
+                            </h3>
+                            <ul>
+                                <li>Born: July 3, 1962</li>
+                                <li>Year Active: 1981-present</li>
+                                <li>Awards: <a href="https://en.wikipedia.org/wiki/List_of_awards_and_nominations_received_by_Tom_Cruise">Full list</a></li>
+                                <li>Website: <a href= "http://tomcruise.com/"> http://tomcruise.com/ </a></li>
+                            </ul>
+                        </td>
+                        <td>
+                            <p>
+                                &nbsp&nbsp&nbsp&nbsp&nbspWith a total of 43 released movies that Tom Cruise acted in, 6 of them are from <i>Mission: Impossible</i> Series. <i>Mission: Impossible</i> first 
+                                released in 1996. Then <i>Mission: Impossible II</i> and <i>Mission: Impossible III</i> released after 6 years of each. From the timeline, it shows 
+                                that <i>Mission: Impossible</i> then released other ones within shorter time period (6 years, 6 years, 5 years, 4 years, 2 years, and 1 year). From 
+                                the imdb database, it shows that <i>Mission: Impossible VII</i> and <i>Mission: Impossible VIII</i> are planning to release in 2021 and 2022.
+                            </p>
+                                 
+                        </td>
+                    </tr>
+                </table>
+                    
             </div>
             <!-- Monthly Sales of Total Item-->
             <div id = 'geomap'>   
