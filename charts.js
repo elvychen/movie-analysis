@@ -31,7 +31,7 @@ mouse/touch event handler to bind the charts together.
                 if (point) {
                     if (chart.renderTo.id == "timeline"){
                         var data = missionImpossible[point.id];
-                        geomap.setTitle({'text':"Movie: "+timeline_dict[point.x][0]});
+                        geomap.setTitle({'text':timeline_dict[point.x][0]+' (Original Released Box Office)'});
                         if (data == null){
                             geomap.setSubtitle({'text':"No Box Office Information"});
                             geomap.series[0].update({'data':[]});
