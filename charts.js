@@ -44,7 +44,7 @@ mouse/touch event handler to bind the charts together.
                         else{
                             price = getTotalBoxOffice(data);
                             geomap.series[0].update({'data':data});
-                            geomap.setSubtitle({'text':"Total Box Office Across the World: $"+price});
+                            geomap.setSubtitle({'text':"Total Original Released Box Office Across the World: $"+price});
                         }
                         point.highlight(e);
 
@@ -308,7 +308,7 @@ geomap = new Highcharts.mapChart('geomap', {
       map: 'custom/world',
     },
     title: {
-        text: 'Box Office Across the World',
+        text: 'Box Office of Original Release Across the World',
         useHTML: true,
       },
     mapNavigation: {
